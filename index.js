@@ -15,6 +15,7 @@ function contarVogais(palavra) {
 let palavra = 'chagas';
 let numeroDeVogais = contarVogais(palavra);
 console.log(`O número de vogais da palavra ${palavra} é ${numeroDeVogais}`);
+//a função prompt() retorna uma string ou null, por isso fiz a verificação com o If.
 let palavraInput = prompt('Digite uma palavra');
 if (palavraInput !== null) {
     let contandoVogais = contarVogais(palavraInput);
