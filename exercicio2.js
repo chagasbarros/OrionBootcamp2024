@@ -1,5 +1,5 @@
 "use strict";
-let lista = [
+const lista = [
     { "id": 1,
         "name": "Ada Lovelace",
         "bio": "Ada Lovelace, foi uma matemática e escritora inglesa reconhecida por ter escrito o primeiro algoritmo para ser processado por uma máquina" },
@@ -13,18 +13,25 @@ let lista = [
         "name": "Nicolau Copérnico",
         "bio": "Nicolau Copérnico foi um astrônomo e matemático polonês que desenvolveu a teoria heliocêntrica do Sistema Solar." }
 ];
-// //A) CRIE UMA FUNÇÃO QUE RETORNE A BIO DO ID PASSADO
-// // Paradigma Imperativo
-// function buscarBio(id: number, lista: Array<Pessoa>): string{
-//     for(const identificador of lista ){
-//         if(identificador.id === id ){
-//             return identificador.bio
-// }
-//     }
-//     return 'Id não encontrado'
-// }
-// var testeID: string = buscarBio(4, lista)
-// console.log(testeID)
+//A) CRIE UMA FUNÇÃO QUE RETORNE A BIO DO ID PASSADO
+// Paradigma Imperativo
+function buscarBio(lista){
+    let inputBio = parseInt(document.getElementById("inputBio").value);
+    
+    for(const identificador of lista ){
+        if(identificador.id === inputBio ){
+
+            document.getElementById("respostaBio").innerHTML = "Bio solicitada:" + identificador.bio;
+            return identificador.bio
+}
+    }
+    return document.getElementById("respostaBio").innerHTML = 'Id não encontrado'
+
+}
+
+document.getElementById("buttonBio").addEventListener('click', () => buscarBio(lista));
+
+
 // //Paradigma Funcional
 // const encontrarbio = (listaDeNomes: Array<Pessoa>, identificador: number): string | undefined => {
 //     const pessoa = lista.find(pessoa => pessoa.id === identificador);
@@ -36,18 +43,29 @@ let lista = [
 // }else {
 //     console.log("Id não encontrado")
 // }
-//B) CRIE UMA FUNÇÃO QUE RETORNE O NOME DO ID PASSADO
-//Paradigma Imperativo
-// function buscarNome(id: number, lista: Array<Pessoa>): string{
-//     for(const identificador of lista ){
-//         if(identificador.id === id ){
-//             return identificador.name
-// }
-//     }
-//     return 'Nome não encontrado'
-// }
-// var testeName: string = buscarNome(3, lista)
-// console.log(testeName)
+
+
+// B) CRIE UMA FUNÇÃO QUE RETORNE O NOME DO ID PASSADO
+// Paradigma Imperativo
+function buscarNome(lista){
+    let inputName = parseInt(document.getElementById("inputName").value);
+    let verificarId = false;
+
+    for(const identificador of lista ){
+        if(identificador.id === inputName ){
+            let verificarId = true;
+            document.getElementById("respostaNome").innerHTML = identificador.name
+            return
+}
+    }
+    if(!verificarId){
+        document.getElementById("respostaNome").innerHTML = "Id não encontrado"
+    }
+}
+
+document.getElementById("buttonName").addEventListener('click', () => buscarNome(lista))
+
+
 // //Paradigma Funcional
 // const encontrarNome = (listaDeNomes: Array<Pessoa>, identificador: number): string | undefined => {
 //     const pessoa = listaDeNomes.find(pessoa => pessoa.id === identificador)
@@ -61,18 +79,25 @@ let lista = [
 // }
 // //C) CRIE UMA FUNÇÃO QUE APAGUE UM ITEM DA LISTA A PARTIR DE UM ID PASSADO
 // // Paradigma Imperativo
-// function apagarItem(id: number, lista: Array<Pessoa>): void{
-//     for(let i =0; i < lista.length; i++){
-//         if(lista[i].id === id){
-//             lista.splice(i, 1);
-//         }
-//     }
-// }
-// apagarItem(2, lista)
-// // verificando se o item foi deletado.
-// for(let i = 0; i < lista.length; i++){
-//     console.log(`Id: ${lista[i].id}, Nome: ${lista[i].name}`)
-// }
+function apagarItem(lista){
+    let inputItem = parseInt(document.getElementById("inputItem").value);
+    for(let i =0; i < lista.length; i++){
+        if(lista[i].id === inputItem){
+            lista.splice(i, 1);
+            break;
+        }
+    }
+    novaLista(lista);
+}
+
+function novaLista(lista){
+    const mostrarLista = lista.map(item => `<li>ID: ${item.id} - ${item.name} - ${item.bio}</li>`)
+    document.getElementById("novaLista").innerHTML = `<ul>${mostrarLista}</ul>`;
+}
+document.getElementById("deletarItem").addEventListener('click', () => apagarItem(lista))
+novaLista(lista)
+
+
 //Paradigma Funcional
 // const deletarItem = (listadeNomes: Array<Pessoa>, identificador: number): Array<Pessoa> => {
 //     const novaLista = lista.filter(pessoa => pessoa.id !== identificador)
@@ -84,32 +109,48 @@ let lista = [
 // }
 //D) CRIE UMA FUNÇÃO QUE ALTERE A BIO OU O NOME A PARTIR DE UM ID PASSADO
 // Paradigma Imperativo
-// function alterarNomeOuBio(id: number, mudarNome?: string, mudarBio?: string): void{
-//     for(let i = 0; i < lista.length; i++){
-//         if(lista[i].id === id){
-//             if(mudarNome){
-//                 lista[i].name = mudarNome;
-//             }
-//             if(mudarBio){
-//                 lista[i].bio = mudarBio;
-//             }
-//             return;
-//         }
-//     }
-//     console.log('O id não foi encontrado')
-// }
+function alterarNomeOuBio(){
+    
+    let alterarId = parseInt(document.getElementById("alterarId").value);
+    let inputAlterarNome = document.getElementById("inputAlterarNome").value
+    let inputAlterarBio = document.getElementById("inputAlterarBio").value
+
+    let verificarId = false;
+
+    for(let i = 0; i < lista.length; i++){
+        if(lista[i].id === alterarId){
+            let verificarId = true;
+
+            if(inputAlterarNome){
+                lista[i].name = inputAlterarNome;
+            }
+            if(inputAlterarBio){
+                lista[i].bio = inputAlterarBio;
+            }
+            novaLista(lista)
+            
+        }
+    }
+    if(!verificarId) {
+        document.getElementById('respostaAlterar').innerHTML = "Id não encontrado"
+    }
+    
+}
+
+document.getElementById("alterar").addEventListener('click', alterarNomeOuBio);
+novaLista(lista)
 // //verificando se a função alterou a bio 
 // alterarNomeOuBio(1, undefined, "estudante back-end")
-const mudarNomeouBio = (listaDeNomes, identificador, nome, bio) => {
-    const novaLista = listaDeNomes.map(pessoa => {
-        if (pessoa.id === identificador) {
-            return Object.assign(Object.assign({}, pessoa), { name: nome ? nome : pessoa.name, bio: bio ? bio : pessoa.bio });
-        }
-        return pessoa;
-    });
-    return novaLista;
-};
-const testeDeNovaLista = mudarNomeouBio(lista, 1, "chagas", "aprendendo typescript");
-for (let i = 0; i < testeDeNovaLista.length; i++) {
-    console.log(`Id: ${testeDeNovaLista[i].id}, Nome: ${testeDeNovaLista[i].name}, Bio: ${testeDeNovaLista[i].bio}`);
-}
+// const mudarNomeouBio = (listaDeNomes, identificador, nome, bio) => {
+//     const novaLista = listaDeNomes.map(pessoa => {
+//         if (pessoa.id === identificador) {
+//             return Object.assign(Object.assign({}, pessoa), { name: nome ? nome : pessoa.name, bio: bio ? bio : pessoa.bio });
+//         }
+//         return pessoa;
+//     });
+//     return novaLista;
+// };
+// const testeDeNovaLista = mudarNomeouBio(lista, 1, "chagas", "aprendendo typescript");
+// for (let i = 0; i < testeDeNovaLista.length; i++) {
+//     console.log(`Id: ${testeDeNovaLista[i].id}, Nome: ${testeDeNovaLista[i].name}, Bio: ${testeDeNovaLista[i].bio}`);
+// }

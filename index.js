@@ -1,26 +1,23 @@
 "use strict";
-//"for..of" itera sobre os valores dos objetos iteráveis(como arrays, strings, mapas, set,etc)
-//"for..in" itera sobre as chaves (ou índices) de um objeto ou array.
-//O método includes() determina se um conjunto de caracteres pode ser encontrado dentro de outra string,
-// retornando true ou false
-function contarVogais(palavra) {
-    const vogais = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+
+function contarVogais() {
+    event.preventDefault();
+    let palavra = document.getElementById("palavra").value;
+
+    const vogais = /[a,e,i,o,u,A,E,I,O,U,á,é,í,ó,ú,Á,É,Í,Ó,Ú,à,è,ì,ò,ù,À,È,Ì,Ò,Ù,ã,õ,Ã,Õ,â,ê,î,ô,û,Â,Ê,Î,Ô,Û,ä,ë,ï,ö,ü,Ä,Ë,Ï,Ö,Ü]/;
+
     let contador = 0;
+
     for (let vogal of palavra) {
-        if (vogais.includes(vogal))
+        if (vogais.test(vogal)) {
             contador++;
+        }
     }
+    document.getElementById("resposta").innerHTML = "a palavra digitada tem " + contador + " vogais";
     return contador;
 }
-let palavra = 'chagas';
-let numeroDeVogais = contarVogais(palavra);
-console.log(`O número de vogais da palavra ${palavra} é ${numeroDeVogais}`);
-//a função prompt() retorna uma string ou null, por isso fiz a verificação com o If.
-let palavraInput = prompt('Digite uma palavra');
-if (palavraInput !== null) {
-    let contandoVogais = contarVogais(palavraInput);
-    alert(`Você digitou ${palavraInput}, ela contém ${contandoVogais} vogais`);
-}
-else {
-    alert('Nenhuma palavra foi digitada');
-}
+document.getElementById("pesquisar").addEventListener('click', contarVogais)
+
+
+
+
