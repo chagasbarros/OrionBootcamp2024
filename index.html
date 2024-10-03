@@ -6,10 +6,70 @@
     <title>Formulário</title>
 </head>
 <body>
-  <h1>O arquivo HTML foi usado para ser o formulário com a entrada de dados usando o prompt</h1>
+  <form>
+    <h1>Orio Bootcamp 2024</h1>
+    <h3>Resolução do exercício 3</h3>
+    <section>
+      <div>
+        <h2>1º Exercício: Criar uma função que retorne a quantidade de vogais da palavra passada</h2>
+          <label for="palavra">Digite uma palavra:</label>
+          <input type="text" id="palavra" name="palavra">
+          <button id="pesquisar" type="button">Pesquisar</button>
+      </div>
+      <div>
+        <p id="resposta"></p>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h1>2º Exercício: Dado a tabela</h1>
+        <div id="novaLista"></div>
+        <h4>a) Crie uma função que retorne a bio do id passado</h4>
+        <label for="inputBio">Digite o id:</label>
+        <input type="text" id="inputBio" name="palavra">
+        <button id="buttonBio" type="button">PesquisarBio</button>
+      </div>
+      <div>
+        <p id="respostaBio"></p>
+      </div>
+      <div>
+        <h4>b) Retorne o nome do id passado</h4>
+        <label for="inputName">Digite o id:</label>
+        <input type="text" id="inputName" name="palavra">
+        <button id="buttonName" type="button">Pesquisar</button>
+      </div>
+      <div>
+        <p id="respostaNome"></p>
+      </div>
+      <div>
+        <h4>c)Apague um item da lista a partir de um id passado</h4>
+        <label for="inputItem">Digite o id:</label>
+        <input type="text" id="inputItem" name="palavra">
+        <button id="deletarItem" type="button">Deletar</button>
+      </div>
+      <div>
+        <h4>d)Informe o id e nome ou bio que queira alterar</h4>
+        <label for="alterarId">Digite o id:</label>
+        <input type="text" id="alterarId" name="palavra">
+
+        <label for="inputAlterarBio">Digite o nome:</label>
+        <input type="text" id="inputAlterarNome" name="palavra">
+
+        <label for="inputAlterarNome">Digite a bio:</label>
+        <input type="text" id="inputAlterarBio" name="palavra">
+
+
+        <button id="alterar" type="button">alterar</button>
+      </div>
+      <div></div>
+        <p id="respostaAlterar"></p>
+      </div>
+    </section>
+  </form>
 </body>
 
 <script src="index.js"></script>
+<script src="exercicio2.js"></script>
 </html>
 
 
